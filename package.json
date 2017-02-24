@@ -2,10 +2,10 @@
   "name": "gardencenter",
   "version": "1.0.0",
   "description": "Garden Centre is an autonomous garden monitoring and watering system using node.js, mongoDB, Johnny-Five and Angular. It is designed to work with multiple soil moisture sensors and has the ability to automatically turn a water system on if set up to do so.",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "test",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "keywords": [
     "javascript",
