@@ -8,7 +8,9 @@ const express    = require('express'); // Load express
 const app        = express();
 const mongoose   = require('mongoose'); // To interact with mongo
 const bodyParser = require('body-parser'); // body-parser will handles our API calls
-const config     = require('./config'); // Hide away our keys
+const config     = require('./gcConfig'); // Hide away our keys
+const crypto     = require('crypto');
+const encryption = require('./encryption');
 const jwt        = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 // Data Models
@@ -49,7 +51,7 @@ apiRoutes.post('/login', function(req, res){
         
         if (user) {
             
-            if(user.password != req.body.password){
+            if(encryption.decrypt(user.password) != req.body.password){
                 return res.json({ success: false, message: "User name or password incorrect"});
             }
 
@@ -73,6 +75,22 @@ apiRoutes.post('/login', function(req, res){
 
     });
 });
+
+// apiRoutes.get('/setup', (res, req) => {
+//     const markV = new User({
+//         userName: 'MarkV',
+//         password: encryption.encrypt(config.setupPassword),
+//         isAdmin: true
+//     });
+
+//     markV.save(function(err) {
+//     if (err) throw err;
+
+//     console.log('User saved successfully');
+//     res.json({ success: true });
+//   });
+
+// });
 
 
 // ====================================
@@ -128,6 +146,8 @@ apiRoutes.get('/users', function(req, res) {
 
 // (POST http://localhost:8080/api/user)
 apiRoutes.post('/user', (req, res) => {
+
+    // Need to work out if user has admin permissions within their token.
     
     User.findOne({
         userName: req.body.userName
@@ -140,13 +160,10 @@ apiRoutes.post('/user', (req, res) => {
              return res.json({ success: false, message: "A user with this user name already exists"});
         }
 
-        
-
-
-
     });
 
-
+     // Encrypt the users password
+        const encryptedPassword = encryption.encrypt(req.body.password);
 
 });
 

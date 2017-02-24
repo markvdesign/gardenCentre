@@ -4,7 +4,7 @@
         {
             "type": "node2",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Node",
             "program": "${workspaceRoot}/app.js",
             "cwd": "${workspaceRoot}"
         },
