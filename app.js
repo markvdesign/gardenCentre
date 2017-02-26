@@ -51,20 +51,20 @@ apiRoutes.post('/login', function(req, res){
         
         if (user) {
             
-            if(encryption.decrypt(user.password) != req.body.password){
+            if(user.password != encryption.encrypt(req.body.password)){
                 return res.json({ success: false, message: "User name or password incorrect"});
             }
 
         }
 
-        const tokenForUser = { 
+        const tokenPayload = { 
             userName: user.userName,
             isAdmin: user.isAdmin
         };
 
         // We found a user so create a token
-        const token = jwt.sign( tokenForUser, config.tokenSecret, {
-            expiresIn: 1440 // 24 hours (24 X 60)
+        const token = jwt.sign( tokenPayload, config.tokenSecret, {
+            expiresIn: "24h" // 24 hours as JWT will take the number or seconds or strings like this "2d" or "2 days"
         });
 
         res.json({
@@ -111,6 +111,7 @@ apiRoutes.use(function(req, res, next) {
                 });
             } else {
                 req.decoded = decoded;
+                next();
             }
 
         });
@@ -122,8 +123,6 @@ apiRoutes.use(function(req, res, next) {
         });
 
     }
-
-    next(); // make sure we go to the next route and don't stop here
 });
 
 // ====================================
@@ -148,7 +147,13 @@ apiRoutes.get('/users', function(req, res) {
 apiRoutes.post('/user', (req, res) => {
 
     // Need to work out if user has admin permissions within their token.
-    
+    if(!req.decoded.isAdmin){
+        return res.status(403).send({ 
+            success: false, 
+            message: 'You are not authorised to before this function'
+        });
+    }
+
     User.findOne({
         userName: req.body.userName
     }, function(err, user){
@@ -162,8 +167,18 @@ apiRoutes.post('/user', (req, res) => {
 
     });
 
-     // Encrypt the users password
-        const encryptedPassword = encryption.encrypt(req.body.password);
+    // Create the user details passed into the body and create a new user to add it to the database.
+    const newUser = new User({
+        userName: req.body.userName,
+        password: encryption.encrypt(req.body.password),
+        isAdmin: req.body.isAdmin
+    });
+
+    newUser.save(function(err) {
+        if (err) throw err;
+
+        res.status(204).send({success: true, message: "User successfully created."});
+    });
 
 });
 
