@@ -17,8 +17,3 @@ const userSchema = mongoose.Schema({
 });
 
 const Users = module.exports = mongoose.model('Users', userSchema);
-
-// Get Soil Readings
-// module.exports.getReadings = function(callback, limit){
-//     Users.find(callback).limit(limit);
-// };
