@@ -56,4 +56,4 @@ app.listen(port); // Listen on the port number we set above
 logger.info(`The magic happens on port ${port}`);
 
 // Start our Water sensor
-sensor.start();
+// sensor.start();
