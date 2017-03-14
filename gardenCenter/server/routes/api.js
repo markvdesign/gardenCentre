@@ -10,7 +10,7 @@ const jwt        = require('jsonwebtoken'); // used to create, sign, and verify 
 
 // Data Models
 const SoilReading = require('../../models/soilReading');
-const User  = require('../../models/users');
+const User  = require('../../models/user');
 
 
 // Test api to make sure everything is working
@@ -25,9 +25,9 @@ api.post('/login', function(req, res){
         if(err){
             throw err;
         }
-        
+
         if(!user){
-             return res.json({ success: false, message: "User name or password incorrect"});
+             return res.json({ success: false, message: "No User: User name or password incorrect"});
         } 
         
         if (user) {
@@ -57,21 +57,21 @@ api.post('/login', function(req, res){
     });
 });
 
-// apiRoutes.get('/setup', (res, req) => {
-//     const markV = new User({
-//         userName: 'MarkV',
-//         password: encryption.encrypt(config.setupPassword),
-//         isAdmin: true
-//     });
+api.get('/setup', (res, req) => {
+    const markV = new User({
+        userName: 'MarkV',
+        password: encryption.encrypt(config.setupPassword),
+        isAdmin: true
+    });
 
-//     markV.save(function(err) {
-//     if (err) throw err;
+    markV.save(function(err) {
+    if (err) throw err;
 
-//     console.log('User saved successfully');
-//     res.json({ success: true });
-//   });
+    console.log('User saved successfully');
+    return res.json({ success: true });
+  });
 
-// });
+});
 
 
 // ====================================
@@ -113,7 +113,7 @@ api.use(function(req, res, next) {
 // (GET http://localhost:8080/api/users)
 api.get('/users', function(req, res) {
   User.find({}, function(err, users) {
-    res.json(users);
+    return res.json(users);
   });
 });
 
@@ -151,7 +151,7 @@ api.post('/user', (req, res) => {
     newUser.save(function(err) {
         if (err) throw err;
 
-        res.status(204).send({success: true, message: "User successfully created."});
+        return res.status(204).send({success: true, message: "User successfully created."});
     });
 
 });

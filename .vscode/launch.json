@@ -5,7 +5,7 @@
             "type": "node2",
             "request": "launch",
             "name": "Launch Node",
-            "program": "${workspaceRoot}/app.js",
+            "program": "${workspaceRoot}\\gardenCenter\\server\\server.js",
             "cwd": "${workspaceRoot}"
         },
         {
