@@ -8,17 +8,17 @@ const logger        = require('winston');
 module.exports = {
     "start" :function start(){
         const board = new five.Board({
-            timeout: 30
+            timeout: 3600
         });
 
         board.on('ready', () => {
             const sensor = new five.Sensor({
                 pin: "A0",
-                freq: 3600000,
+                freq: 10000,
                 threshold: 5
             });
 
-            sensor.on("data", () => {
+            sensor.on('data', () => {
 
                 const newSoilReading = new SoilReading({
                     moisture_level: sensor.scaleTo(0, 100),
@@ -32,5 +32,9 @@ module.exports = {
         });
 
         logger.info("Sensor has started.");
+
+        board.on('exit', () => {
+            logger.info(`See ya from the sensor`);
+        });
     }
 };
