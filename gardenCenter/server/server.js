@@ -20,7 +20,8 @@ const jwt        = require('jsonwebtoken'); // used to create, sign, and verify 
 const sensor     = require('./waterSensor');
 
 // API Routes
-const api = require('../server/routes/api');
+const publicApi  = require('../server/routes/public-api');
+const privateApi = require('../server/routes/private-api');
 
 
 // Configuration
@@ -34,19 +35,61 @@ app.use(bodyParser.json());
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// Get out API Routes
-app.use('/api', api);
+// ====================================
+// Public API routes
+//=====================================
+app.use('/api', publicApi);
 
-// Catch all other routes and return the index file
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+// ====================================
+// middleware to use for all requests
+//=====================================
+privateApi.use(function(req, res, next) {
+    
+    // USING TOKEN BASED AUTHENTICATION
+    const userToken = req.body.gc_token || req.query.gc_token || req.headers['x-gc-token'];
+
+    if(userToken){
+        jwt.verify(userToken, config.tokenSecret, function(err, decoded){
+
+            if(err){
+                return res.json({
+                    success: false,
+                    message: "Invalid token"
+                });
+            } else {
+                req.decoded = decoded;
+                next();
+            }
+
+        });
+    } else {
+
+        return res.status(403).send({
+            success: false,
+            message: 'No token provided, please provide a valid token to continue.'
+        });
+
+    }
 });
+
+// ====================================
+// Private API routes
+//=====================================s
+app.use('/api', privateApi);
+
 
 // *****************
 // IoT
 // *****************
 app.get('/api/getsoilreading', function(req, res){
-    res.json(SoilReading.getReading());
+    return res.json(SoilReading.getReading());
+});
+
+
+// Catch all other routes and return the index file. This needs to be last in the list otherwise 
+// you wont be able to hit any endpoints placed under this.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
 
@@ -56,4 +99,4 @@ app.listen(port); // Listen on the port number we set above
 logger.info(`The magic happens on port ${port}`);
 
 // Start our Water sensor
-// sensor.start();
+sensor.start();
