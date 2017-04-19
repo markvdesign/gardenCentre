@@ -1,0 +1,19 @@
+<div class="panel">
+  <div class="panel-heading">{{ this.gardenName }}</div>
+  <div class="panel-body">
+    <div class="data-panel text-centre">
+      <div class="reading-wrapper">
+        <p class="reading-result">{{this.sensorReading.toFixed(0)}}</p>
+        <span [ngClass]="iconArrow" class="text-small" aria-hidden="true"></span>
+      </div>
+      <div>
+        <span class="text-bold">Moisture reading</span>
+      </div>
+    </div>
+    <div class="data-panel text-left">
+      <p><strong>Last reading:</strong> {{lastReading}}</p>
+      <p><strong>Last watering:</strong> 15/4/2017 08:23pm</p>
+    </div>
+    <!--needs a symbol to show if reading has gone up or down-->
+  </div>
+</div>

@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SensorComponent } from './sensor/sensor.component';
+import { GardenSensorComponent } from './sensor/garden-sensor.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [SensorComponent]
+  declarations: [GardenSensorComponent],
+  exports: [
+    GardenSensorComponent
+  ]
 })
 export class SharedModule { }
