@@ -1,7 +1,6 @@
 const mongoose      = require('mongoose');
 const SoilReading   = require('../models/soilReading');
 const five          = require('johnny-five');
-
 const logger        = require('winston');
 
 
