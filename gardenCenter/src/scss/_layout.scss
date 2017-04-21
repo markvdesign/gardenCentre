@@ -1,0 +1,26 @@
+@import './_variables';
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: $dark-brown;
+    background-image: url('assets/images/grass.jpg');
+    background-attachment: fixed;
+    background-position: bottom center;
+    font-family: 'Questrial', sans-serif;
+    color: darken($dark-brown, 50%);
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-centre {
+    text-align: center;
+}
+
+.text-bold {
+    font-weight: bold;
+}

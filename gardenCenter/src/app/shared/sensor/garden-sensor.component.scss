@@ -1,0 +1,43 @@
+@import '../../../scss/_variables';
+
+:host {
+    display: flex;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.panel-heading {
+    height: 40px;
+    padding: 0.5rem;
+    background-color: $dark-brown;
+    color: $light-title;
+    font-size: 1.23rem;
+}
+
+.panel-body {
+    display: flex;
+    background: $light-background;
+    padding: 2vh;
+    border: 1px solid $light-grey;
+    opacity: 0.85;
+    color: darken($dark-brown, 5%);
+}
+
+.reading-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.reading-result {
+    font-size: 5rem;
+    margin: 0;
+    padding: 0;
+}
+
+.data-panel {
+    margin: 0.5rem;
+}

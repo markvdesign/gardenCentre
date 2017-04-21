@@ -11,9 +11,4 @@ const soilReadingSchema = mongoose.Schema({
     }
 });
 
-const SoilReading = module.exports = mongoose.model('SoilReading', soilReadingSchema);
-
-// Get Soil Readings
-module.exports.getReadings = function(callback, limit){
-    SoilReading.find(callback).limit(limit);
-};
+const SoilReading = module.exports = mongoose.model('SoilReading', soilReadingSchema, 'soilReading');

@@ -1,0 +1,16 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "Garden Centre",
+    "scope": "/",
+    "display": "standalone",
+    "start_url": "./?utm_source=web_app_manifest",
+    "short_name": "GC",
+    "theme_color": "#D98B14",
+    "description": "",
+    "orientation": "any",
+    "background_color": "#024873",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [] // todo: add icon set once they are created.
+}

@@ -9,21 +9,34 @@ const encryption = require('../encryption');
 const jwt        = require('jsonwebtoken'); // used to create, sign, and verify tokens
 
 // Data Models
+<<<<<<< HEAD
 const SoilReading = require('../../models/soilReading');
 const User  = require('../../models/user');
+=======
+const User  = require('../../models/user');
+const SoilReading = require('../../models/soilReading');
+>>>>>>> 8e40b3848a62251b81dbc491e5bd743e09fc163c
 
 // *****************
 // USERS
 // *****************
 
+<<<<<<< HEAD
 // (GET http://localhost:8080/api/users)
+=======
+// (GET http://localhost:3000/api/users)
+>>>>>>> 8e40b3848a62251b81dbc491e5bd743e09fc163c
 privateApi.get('/users', function(req, res) {
   User.find({}, function(err, users) {
     return res.json(users);
   });
 });
 
+<<<<<<< HEAD
 // (POST http://localhost:8080/api/user)
+=======
+// (POST http://localhost:3000/api/user)
+>>>>>>> 8e40b3848a62251b81dbc491e5bd743e09fc163c
 privateApi.post('/user', (req, res) => {
 
     // Need to work out if user has admin permissions within their token.
@@ -62,6 +75,31 @@ privateApi.post('/user', (req, res) => {
 
 });
 
+<<<<<<< HEAD
+=======
+// *****************
+// IoT
+// *****************
+
+privateApi.get('/soilreadings', function (req, res) {
+
+// Get all soil readings and sort them via date time.
+  SoilReading.find((err, reading) => {
+    return res.json(reading);
+  }).sort({ reading_date: 'desc' });
+
+});
+
+privateApi.get('/lastsoilreading', function (req, res) {
+
+// Get the last soil reading.
+  SoilReading.find((err, reading) => {
+    return res.json(reading);
+  }).sort({ reading_date: 'desc' }).limit(1);
+
+});
+
+>>>>>>> 8e40b3848a62251b81dbc491e5bd743e09fc163c
 
 // *****************
 // Export our api to the main app
