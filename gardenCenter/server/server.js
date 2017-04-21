@@ -43,35 +43,6 @@ app.use('/api', publicApi);
 // ====================================
 // middleware to use for all requests
 //=====================================
-<<<<<<< HEAD
-privateApi.use(function(req, res, next) {
-    
-    // USING TOKEN BASED AUTHENTICATION
-    const userToken = req.body.gc_token || req.query.gc_token || req.headers['x-gc-token'];
-
-    if(userToken){
-        jwt.verify(userToken, config.tokenSecret, function(err, decoded){
-
-            if(err){
-                return res.json({
-                    success: false,
-                    message: "Invalid token"
-                });
-            } else {
-                req.decoded = decoded;
-                next();
-            }
-
-        });
-    } else {
-
-        return res.status(403).send({
-            success: false,
-            message: 'No token provided, please provide a valid token to continue.'
-        });
-
-    }
-=======
 privateApi.use(function (req, res, next) {
 
   // USING TOKEN BASED AUTHENTICATION
@@ -99,7 +70,6 @@ privateApi.use(function (req, res, next) {
     });
 
   }
->>>>>>> 8e40b3848a62251b81dbc491e5bd743e09fc163c
 });
 
 // ====================================
@@ -108,17 +78,6 @@ privateApi.use(function (req, res, next) {
 app.use('/api', privateApi);
 
 
-<<<<<<< HEAD
-// *****************
-// IoT
-// *****************
-app.get('/api/getsoilreading', function(req, res){
-    return res.json(SoilReading.getReading());
-});
-
-
-=======
->>>>>>> 8e40b3848a62251b81dbc491e5bd743e09fc163c
 // Catch all other routes and return the index file. This needs to be last in the list otherwise 
 // you wont be able to hit any endpoints placed under this.
 app.get('*', (req, res) => {
@@ -132,8 +91,4 @@ app.listen(port); // Listen on the port number we set above
 logger.info(`The magic happens on port ${port}`);
 
 // Start our Water sensor
-<<<<<<< HEAD
-sensor.start();
-=======
 //sensor.start();
->>>>>>> 8e40b3848a62251b81dbc491e5bd743e09fc163c
