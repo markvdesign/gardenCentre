@@ -25,7 +25,7 @@ const privateApi = require('../server/routes/private-api');
 
 
 // Configuration
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 mongoose.connect(config.dbUrl); // Connect to our DB using mongoose
 app.set('', config.tokenSecret);
 
