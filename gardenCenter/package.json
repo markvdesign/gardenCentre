@@ -1,14 +1,15 @@
 {
   "name": "garden-center",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "garden-start": "mongod && node server/server.js",
+    "garden-build": "ng build && node server/server.js"
   },
   "private": true,
   "dependencies": {
