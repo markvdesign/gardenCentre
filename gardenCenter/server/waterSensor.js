@@ -1,7 +1,6 @@
 const mongoose      = require('mongoose');
 const SoilReading   = require('../models/soilReading');
 const five          = require('johnny-five');
-
 const logger        = require('winston');
 
 
@@ -12,16 +11,18 @@ module.exports = {
         });
 
         board.on('ready', () => {
-            const sensor = new five.Sensor({
+            const sensorA0 = new five.Sensor({
+                id: 1,
                 pin: "A0",
                 freq: 10000,
                 threshold: 5
             });
 
-            sensor.on('data', () => {
+            sensorA0.on('data', () => {
 
                 const newSoilReading = new SoilReading({
-                    moisture_level: sensor.scaleTo(0, 100),
+                    sensor_id: sensorA0.id,
+                    moisture_level: sensorA0.scaleTo([0, 100]),
                     reading_date: Date.now()
                 });       
                 
@@ -29,9 +30,8 @@ module.exports = {
                 logger.info(newSoilReading.toString());
                 
             });
+            logger.info(`Sensor ${sensorA0.pin} has started.`);
         });
-
-        logger.info("Sensor has started.");
 
         board.on('exit', () => {
             logger.info(`See ya from the sensor`);

@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const soilReadingSchema = mongoose.Schema({
+    sensor_id: {
+        type: Number,
+        require: true
+    },
     moisture_level: {
         type: Number,
         required: true
