@@ -3,18 +3,14 @@ import { Http, Headers, RequestOptions } from "@angular/http";
 import { environment } from '../../../environments/environment';
 import { SensorReading } from './sensor-reading';
 import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/map';  
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
+import '../../barrels/rxjsBarrel';
 
 @Injectable()
 export class GardenSensorService {
-  // private token = () => {
-  //   window.localStorage.getItem('x-gc-token');
-  // };
+  private token = localStorage.getItem('x-gc-token');
   private readonly headers = new Headers({
-    'content-type': 'application/json'
-    // 'x-gc-token': this.token
+    'content-type': 'application/json',
+    'x-gc-token': this.token
   });
   private readonly options = new RequestOptions({headers: this.headers});
 

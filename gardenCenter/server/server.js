@@ -12,6 +12,7 @@ const bodyParser = require('body-parser'); // body-parser will handles our API c
 const logger = require('winston'); // Use logger.info("info message"), logger.warn("warn msg") logger.error("error msg") or logger.log('info', "info msg")
 const uuid = require('uuid/v1'); // Use uuid() to generate a timestamped GUID
 
+const cors = require('cors');
 const config = require('./gcConfig'); // Hide away our keys
 const crypto = require('crypto');
 const encryption = require('./encryption');
@@ -31,6 +32,10 @@ app.set('', config.tokenSecret);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(cors());
+
+app.options('*', cors());
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));

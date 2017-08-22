@@ -1,0 +1,8 @@
+<h1>Welcome to Garden Centre</h1>
+<p>Please sign in below</p>
+<form [formGroup]="loginForm" novalidate>
+  <input type="text" name="userName" formControlName="userName" />
+  <input type="password" name="password" formControlName="password" />
+  <button type="submit" (click)="onSubmit()">Login</button>
+  <div *ngIf="formErrors" class="error">{{errorMessage}}</div>
+</form>
