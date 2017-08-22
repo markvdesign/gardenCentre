@@ -7,7 +7,8 @@ const logger        = require('winston');
 module.exports = {
     "start" :function start(){
         const board = new five.Board({
-            timeout: 3600
+            timeout: 3600,
+            // port: "/dev/tty.usbmodem****"
         });
 
         board.on('ready', () => {
