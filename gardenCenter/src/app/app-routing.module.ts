@@ -10,7 +10,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
-  { path: 'dashboard', component: DashboardComponent },
+  { 
+    path: 'dashboard', 
+    component: DashboardComponent,
+    canLoad: [ CanLoadGuard ]
+  },
   { path: '**', component: PageNotFoundComponent }
 ];
 

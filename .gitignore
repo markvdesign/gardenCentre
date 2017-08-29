@@ -31,6 +31,7 @@
 npm-debug.log
 testem.log
 /typings
+/gardenCenter/server/dist/*
 
 # e2e
 /e2e/*.js
@@ -39,5 +40,4 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
-
 gcConfig.js

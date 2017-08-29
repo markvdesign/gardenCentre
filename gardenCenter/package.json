@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "garden-start": "ng serve && node server/server.js",
-    "garden-build": "ng build --aot && node server/server.js"
+    "gc-start": "ng serve && node server/server.js",
+    "gc-build": "ng build --aot && node server/server.js"
   },
   "private": true,
   "dependencies": {
@@ -21,23 +21,23 @@
     "@angular/platform-browser": "4.3.5",
     "@angular/platform-browser-dynamic": "4.3.5",
     "@angular/router": "4.3.5",
-    "body-parser": "^1.0.1",
-    "core-js": "^2.4.1",
-    "cors": "^2.8.3",
-    "express": "^4.0.0",
-    "johnny-five": "^0.10.7",
-    "jsonwebtoken": "^7.3.0",
-    "mongodb": "^2.2.24",
-    "mongoose": "4.9.5",
-    "rxjs": "^5.1.0",
-    "uuid": "^3.0.1",
+    "body-parser": "^1.17.2",
+    "core-js": "^2.5.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "johnny-five": "^0.11.5",
+    "jsonwebtoken": "^7.4.3",
+    "mongodb": "^2.2.31",
+    "mongoose": "4.11.7",
+    "rxjs": "^5.4.3",
+    "uuid": "^3.1.0",
     "winston": "^2.3.1",
-    "zone.js": "0.8.5"
+    "zone.js": "0.8.16"
   },
   "devDependencies": {
-    "@angular/cli": "1.3.0",
+    "@angular/cli": "1.3.1",
     "@angular/compiler-cli": "4.3.5",
-    "@angular/service-worker": "^1.0.0-beta.8",
+    "@angular/service-worker": "^1.0.0-beta.16",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",
@@ -51,7 +51,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
-    "tslint": "~4.4.2",
-    "typescript": "2.2.2"
+    "tslint": "~5.6.0",
+    "typescript": "2.4.2"
   }
 }

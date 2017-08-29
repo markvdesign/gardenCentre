@@ -10,7 +10,8 @@ import { GardenSensorComponent } from './shared/sensor/garden-sensor.component';
 export class AppComponent implements OnInit {
 
   constructor() {}
+
   ngOnInit() {
-  
+
   }
 }

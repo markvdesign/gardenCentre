@@ -31,18 +31,18 @@ export class LoginComponent implements OnInit {
         // TODO: Handle expired token
 
         this.loginResponse = loginResponse;
-        if(this.loginResponse !== undefined) {
-          if(!this.loginResponse.success) {
+        if (this.loginResponse !== undefined) {
+          if (!this.loginResponse.success) {
             console.log(`Log in failed ${this.loginResponse.message}`);
             this.formErrors = true;
             console.info(`login success is: ${this.loginResponse.success}`);
             this.errorMessage = this.loginResponse.message;
             return;
-          } else if(this.loginResponse.gc_token === null || this.loginResponse.gc_token === ''){
+          } else if (this.loginResponse.gc_token === null || this.loginResponse.gc_token === '') {
             this.formErrors = true;
             this.errorMessage = this.loginResponse.message;
             console.log(this.loginResponse.message);
-            return;     
+            return;
           } else {
             localStorage.setItem('x-gc-token', this.loginResponse.gc_token);
             this.formErrors = false;

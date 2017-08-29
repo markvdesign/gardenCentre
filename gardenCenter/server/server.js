@@ -8,7 +8,7 @@ const express = require('express'); // Load express
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose'); // To interact with mongo
-const bodyParser = require('body-parser'); // body-parser will handles our API calls
+const bodyParser = require('body-parser'); // body-parser will handle our API calls
 const logger = require('winston'); // Use logger.info("info message"), logger.warn("warn msg") logger.error("error msg") or logger.log('info', "info msg")
 const uuid = require('uuid/v1'); // Use uuid() to generate a timestamped GUID
 
